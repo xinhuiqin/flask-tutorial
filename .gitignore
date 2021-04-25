@@ -1,0 +1,12 @@
+# 虚拟环境
+venv/
+# 编译文件
+*.pyc
+__pycache__/
+
+# 数据库文件
+instance/
+
+# pycharm配置
+.idea/
+
