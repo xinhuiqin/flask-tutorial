@@ -43,5 +43,13 @@ def create_app(test_config=None):
     # @app.route('/hello')
     # def hello():
     #     return 'Hello, World!'
+    from . import db
+    db.init_app(app)
+
+    # 把蓝图注册到应用上
+    from . import auth
+    # register_blueprint()：做了两件事：1、将blueprint.name添加到 Flask.blueprints 属性
+    # 2、调用 Blueprint.register()方法
+    app.register_blueprint(auth)
 
     return app
