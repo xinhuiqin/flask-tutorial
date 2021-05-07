@@ -48,7 +48,6 @@ def create_app(test_config=None):
     # register_blueprint()：做了两件事：1、将blueprint.name添加到 Flask.blueprints 属性
     # 2、调用 Blueprint.register()方法
     app.register_blueprint(auth.bp)
-    app.add_url_rule("/", endpoint="index", view_func=auth.register)
 
     from . import blog
     app.register_blueprint(blog.bp)

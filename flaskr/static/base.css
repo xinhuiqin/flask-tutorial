@@ -25,11 +25,15 @@ nav {
     align-items: center;
     background: lightgray;
 }
-
-nav h1 {
+h1 {
     color: #377ba8;
     /* h1 和 ul 分布到两端：让 h1 占据剩余空间*/
     flex: auto;
+    margin: 1rem 0 1rem 0;
+}
+nav > h1 > a {
+    /*去掉 Flaskr 的下划线*/
+    text-decoration: none;
 }
 
 nav ul {
@@ -38,7 +42,7 @@ nav ul {
     /*为了使 li 并列，对 ul 使用弹性布局*/
     display: flex;
 }
-nav a {
+a {
     /*a 标签的文本处理*/
     color: #377ba8;
     padding: 0.25rem 0.5rem;
@@ -51,12 +55,10 @@ nav a {
 
 .content header {
     border-bottom: 1px solid lightgray;
-}
-
-
-.content h1 {
-    color: #377ba8;
-    margin: 1rem 0 0.25rem 0;
+    /*使 h1 标签和 a 标签并列 */
+    display: flex;
+    /**/
+    align-items: center;
 }
 
 .content form {
@@ -69,6 +71,8 @@ nav a {
 .content label {
     margin-bottom: 0.5em;
 }
-.content input {
-    margin-bottom: 0.5em;
+li {
+    /*设置 li 里面的内容水平居中，垂直居中*/
+    display: flex;
+    align-items: center;
 }

@@ -44,19 +44,22 @@ def create():
         author_id = g.user['id']
         title = request.form['title']
         body = request.form['body']
-        created = datetime.datetime.now()
         error = None
 
         if not title:
-            error = '请输入标题'
+            error = '文章标题不能为空'
+        elif not body:
+            error = '内容不能为空'
         if error is not None:
             flash(error)
-
-        db = get_db()
-        db.execute(
-            'INSERT INTO post VALUES (?, ?, ?, ?) WHERE author_id=?', (author_id, created, title, body)
-        )
+        else:
+            db = get_db()
+            # 因为 created 字段是数据库自动调用 CURRENT_TIMESTAMP，所以直接不用填写
+            db.execute(
+                'INSERT INTO post (title, body, author_id)'
+                ' VALUES (?, ?, ?)', (title, body, author_id)
+            )
+            # 更新数据之后需要提交
+            db.commit()
 
     return render_template('blog/create.html')
-
-

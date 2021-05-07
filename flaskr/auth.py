@@ -58,7 +58,7 @@ def register():
             )
             db.commit()
             return redirect(url_for('auth.login'))
-        # 如果 error 存在，那么 flash(error) 将继续
+        # 如果 error 是 None, 那么就重定向到登录页面，所以不用加 else 了，直接在下面写 flash(error)
         flash(error)
     return render_template('auth/register.html')
 
