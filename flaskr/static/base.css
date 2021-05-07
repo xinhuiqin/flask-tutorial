@@ -1,0 +1,74 @@
+/*
+参考资料：
+1、w3c，选择器：https://www.w3.org/TR/2018/WD-selectors-4-20181121/#type-selectors
+2、mdn，选择器：https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Selectors
+*/
+/*元素选择器（Type (tag name) selector）*/
+html {
+    /*background-color, background-bottom等应该合并成background，后续都保留保持这种风格。*/
+    background: #eee;
+    padding: 1rem;
+}
+
+body {
+    max-width: 960px;
+    background: white;
+    /* body 水平居中*/
+    margin: 0 auto;
+}
+
+nav {
+    /*使用弹性布局，使 h1 和 ul 标签并列*/
+    display: flex;
+    padding: 0 0.5rem;
+    /*交叉轴对齐方式：居中*/
+    align-items: center;
+    background: lightgray;
+}
+
+nav h1 {
+    color: #377ba8;
+    /* h1 和 ul 分布到两端：让 h1 占据剩余空间*/
+    flex: auto;
+}
+
+nav ul {
+    /*list-style是一种简写: https://www.w3.org/TR/2020/WD-css-lists-3-20201117/#list-style-property*/
+    list-style: none;
+    /*为了使 li 并列，对 ul 使用弹性布局*/
+    display: flex;
+}
+nav a {
+    /*a 标签的文本处理*/
+    color: #377ba8;
+    padding: 0.25rem 0.5rem;
+}
+
+
+.content {
+    padding: 0 0.5rem;
+}
+
+.content header {
+    border-bottom: 1px solid lightgray;
+}
+
+
+.content h1 {
+    color: #377ba8;
+    margin: 1rem 0 0.25rem 0;
+}
+
+.content form {
+    /*flex 布局: 通过 flex-direction 属性实现行内块元素（inline-block，如 input 元素）和行内元素按垂直方向排列。*/
+    display: flex;
+    flex-direction: column;
+    /* em 相对于当前使用 em 的元素（如：这里的h1）的 font-size 而言*/
+    margin: 1em 0;
+}
+.content label {
+    margin-bottom: 0.5em;
+}
+.content input {
+    margin-bottom: 0.5em;
+}

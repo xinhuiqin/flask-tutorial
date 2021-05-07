@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from flask import render_template
 
 
 # 名字一般是make_app()或者create_app()参考：https://flask.palletsprojects.com/en/1.1.x/cli/
@@ -35,10 +36,6 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    @app.route('/')
-    def hello():
-        return 'Hello, World!'
-
     # a simple page that says hello
     # @app.route('/hello')
     # def hello():
@@ -50,6 +47,20 @@ def create_app(test_config=None):
     from . import auth
     # register_blueprint()：做了两件事：1、将blueprint.name添加到 Flask.blueprints 属性
     # 2、调用 Blueprint.register()方法
-    app.register_blueprint(auth)
+    app.register_blueprint(auth.bp)
+    app.add_url_rule("/", endpoint="index", view_func=auth.register)
+
+    from . import blog
+    app.register_blueprint(blog.bp)
+
+    # 这句与 blog 无关
+    app.add_url_rule("/", endpoint="index")
+
+    # 测试 base.html 页面
+    @app.route('/base')
+    def base():
+        return render_template('base.html')
 
     return app
+
+

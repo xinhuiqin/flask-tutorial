@@ -1,0 +1,21 @@
+/*
+1、login.css 和 register.css 是一样的，这里没有合并是为了方便理解
+*/
+
+/*
+1、em 用法：https://www.w3.org/TR/css-values-3/#em
+2、如果属性尺寸要根据元素字体进行缩放，则使用em
+*/
+.content form {
+    /*flex 布局: 通过 flex-direction 属性实现行内块元素（inline-block，如 input 元素）和行内元素按垂直方向排列。*/
+    display: flex;
+    flex-direction: column;
+    /* em 相对于当前使用 em 的元素（如：这里的h1）的 font-size 而言*/
+    margin: 1em 0;
+}
+.content label {
+    margin-bottom: 0.5em;
+}
+.content input {
+    margin-bottom: 0.5em;
+}
