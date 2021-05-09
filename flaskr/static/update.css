@@ -1,0 +1,17 @@
+/*
+参考资料：
+1、w3c，选择器：https://www.w3.org/TR/2018/WD-selectors-4-20181121/#type-selectors
+2、mdn，选择器：https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Selectors
+*/
+/*注意：点号和 input 标签是连着的，表示所有的类名为 danger 的 input标签。*/
+input.danger {
+    /*设置删除按钮字体颜色为红色*/
+    color: #cc2f2e;
+}
+input[type=submit] {
+    /*
+    1、在弹性布局中，align-self 作用单独的 item
+    2、设置
+    */
+    align-self: start;
+}

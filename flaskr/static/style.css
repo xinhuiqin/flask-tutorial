@@ -57,7 +57,9 @@ nav ul li a, nav ul li span, header .action {
 .content {
   padding: 0 1rem 1rem;
 }
+/*
 
+*/
 .content > header {
   border-bottom: 1px solid lightgray;
   display: flex;

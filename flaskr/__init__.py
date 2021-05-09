@@ -49,7 +49,7 @@ def create_app(test_config=None):
     # 2、调用 Blueprint.register()方法
     app.register_blueprint(auth.bp)
 
-    from . import blog
+    from flaskr import blog
     app.register_blueprint(blog.bp)
 
     # 这句与 blog 无关

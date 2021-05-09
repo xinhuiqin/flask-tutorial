@@ -52,15 +52,22 @@ a {
 .content {
     padding: 0 0.5rem;
 }
-
-.content header {
+/*
+选择器用法说明：
+1、> ： 直接子代组合器/直接子代选择器（https://www.w3school.com.cn/css/css_selector_child.asp）
+2、因为有多个 header 元素的直接子代 header 元素
+*/
+.content > header {
     border-bottom: 1px solid lightgray;
     /*使 h1 标签和 a 标签并列 */
     display: flex;
-    /**/
+    /*在交叉轴上居中*/
     align-items: center;
 }
-
+/*设置标题 Flask 和标题 POST 垂直方向上对齐 */
+.content > header > h1 {
+    padding: 0.25rem 0.5rem
+}
 .content form {
     /*flex 布局: 通过 flex-direction 属性实现行内块元素（inline-block，如 input 元素）和行内元素按垂直方向排列。*/
     display: flex;
@@ -75,4 +82,26 @@ li {
     /*设置 li 里面的内容水平居中，垂直居中*/
     display: flex;
     align-items: center;
+}
+/*因为 textarea 在新增和编辑的时候都用到，所以放到 base.css里面，避免重复*/
+.content textarea {
+  /* 设置最小高度 */
+  min-height: 20em;
+  /* 设置只能垂直拉伸 */
+  resize: vertical;
+}
+.content input, .content textarea {
+  margin-bottom: 1em;
+}
+
+/*注册的时候提交按钮居中*/
+input[type=submit] {
+  align-self: center;
+  min-width: 10em;
+}
+
+
+form label {
+    font-weight: bold;
+    margin-bottom: 0.5em;
 }
