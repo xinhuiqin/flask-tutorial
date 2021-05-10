@@ -1,0 +1,6 @@
+# https://packaging.python.org/guides/using-manifest-in/#using-manifest-in
+# MANIFEST.IN 示例：https://github.com/pypa/sampleproject/blob/main/MANIFEST.in
+include flaskr/schema.sql
+graft flaskr/static
+graft flaskr/templates
+global-exclude *.pyc
