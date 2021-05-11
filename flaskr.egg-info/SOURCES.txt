@@ -24,3 +24,4 @@ flaskr/templates/auth/register.html
 flaskr/templates/blog/create.html
 flaskr/templates/blog/index.html
 flaskr/templates/blog/update.html
+test/test_sample.py

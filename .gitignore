@@ -4,9 +4,15 @@ venv/
 *.pyc
 __pycache__/
 
-# 数据库文件
+# 数据库目录
 instance/
 
-# pycharm配置
+# pycharm配置目录
 .idea/
 
+# 测试目录（目录本来就以.号开头）
+.pytest_cache/
+.coverage
+
+#
+*.egg-info/
