@@ -28,6 +28,7 @@ def create_app(test_config=None):
         # silent 参数：如果没有 config.py 文件不存在，且 silent=True，那么某些情况下返回 False，不抛出异常
         app.config.from_pyfile('config.py', silent=True)
     else:
+        # from_mapping()从关键字参数中读取配置
         app.config.from_mapping(test_config)
 
     # 创建目录，后续SQLite数据库使用

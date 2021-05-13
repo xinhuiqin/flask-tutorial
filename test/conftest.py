@@ -1,31 +1,62 @@
-"""
-1、测试用到的第三方模块是 pytest, coverage
-2、测试固件（test fixture）：
-    2.1 定义：A test fixture is an environment used to consistently test some item, device, or piece of software.
-    2.2 作用：Test fixtures provide a fixed baseline so that tests execute reliably and produce consistent and repeatable results
-"""
-# 最先导入 Python 标准库
 import os
-import tempfile  # 生成临时文件和目录
+import tempfile
 
-# 其次导入第三方库
 import pytest
 
-# 最后是导入本项目的库
+from flaskr import create_app
+from flaskr.db import get_db
+from flaskr.db import init_db
 
-database_path = os.path.join(os.path.dirname(__file__), 'data.sql')
-with open(database_path, 'rb') as f:
-    # 因为使用 rb 模式打开文件，f.read() 得到的是 bytes 对象，需要使用 decode()方法转换成 str 对象
-    _data_sql = f.read().decode('utf-8')
+# read in SQL for populating test data
+with open(os.path.join(os.path.dirname(__file__), "data.sql"), "rb") as f:
+    _data_sql = f.read().decode("utf8")
 
 
-# 在 pytest 里面，固件的技术实现是一个函数
-# 编写固件之前，请阅读有关固件的说明文档：https://docs.pytest.org/en/6.2.x/fixture.html
 @pytest.fixture
 def app():
-    """
-    通过添加 @pytest.fixture，表明 app() 函数是一个固件
-    :return:
-    """
-    # mkdtemp() 返回结果示例：(3, '/tmp/tmpi1832kj6')——第一个值表示句柄（handle）,第二个值表示文件的绝对路径
-    db_fd, db_path = tempfile.mkdtemp()
+    """Create and configure a new app instance for each test."""
+    # create a temporary file to isolate the database for each test
+    db_fd, db_path = tempfile.mkstemp()
+    # create the app with common test config
+    app = create_app({"TESTING": True, "DATABASE": db_path})
+
+    # create the database and load test data
+    with app.app_context():
+        init_db()
+        get_db().executescript(_data_sql)
+
+    yield app
+
+    # close and remove the temporary database
+    os.close(db_fd)
+    os.unlink(db_path)
+
+
+@pytest.fixture
+def client(app):
+    """A test client for the app."""
+    return app.test_client()
+
+
+@pytest.fixture
+def runner(app):
+    """A test runner for the app's Click commands."""
+    return app.test_cli_runner()
+
+
+class AuthActions:
+    def __init__(self, client):
+        self._client = client
+
+    def login(self, username="test", password="test"):
+        return self._client.post(
+            "/auth/login", data={"username": username, "password": password}
+        )
+
+    def logout(self):
+        return self._client.get("/auth/logout")
+
+
+@pytest.fixture
+def auth(client):
+    return AuthActions(client)
