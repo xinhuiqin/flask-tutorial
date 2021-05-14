@@ -1,0 +1,8 @@
+textarea {
+    margin-bottom: 0.5em;
+}
+/*创建的时候按钮设置为在左边*/
+input[type=submit] {
+  align-self: start;
+  min-width: 10em;
+}

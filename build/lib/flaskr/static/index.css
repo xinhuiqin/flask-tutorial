@@ -1,0 +1,28 @@
+/*
+1、有些 css 被多个页面共用，应该合并到一个文件中，没有合并是为了方便理解。
+*/
+.post header {
+    display: flex;
+    /*使作者一栏和编辑按钮处于同一水平线上*/
+    align-items: flex-end;
+}
+
+.post header div {
+    flex: auto;
+}
+
+.post header div h1 {
+    /*设置标题和作者一栏距离近一些*/
+    margin-bottom: 0;
+}
+
+.post .about {
+    color: slategray;
+    /*设置为斜体，斜体也称为意大利体，因为诞生于意大利。参考：https://zh.wikipedia.org/wiki/%E6%84%8F%E5%A4%A7%E5%88%A9%E4%BD%93*/
+    font-style: italic;
+}
+
+/*设置 p 标签中的空白*/
+.post .body {
+  white-space: pre-line;
+}

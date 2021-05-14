@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+{% endblock %}
+{% block header %}
+    <h1>
+        {% block title %}
+            登录
+        {% endblock %}
+    </h1>
+{% endblock %}
+{% block content %}
+    <form method="post">
+        <label for="username">用户名</label>
+        <input name="username" id="username" required  placeholder="请输入用户名"
+            oninvalid="this.setCustomValidity('不能为空')"
+            oninput="this.setCustomValidity('')">
+        <label for="password">密码</label>
+        <input type="password" name="password" id="password" required placeholder="请输入密码"
+            oninvalid="this.setCustomValidity('不能为空')"
+            oninput="this.setCustomValidity('')">
+        <input type="submit" value="登录">
+    </form>
+{% endblock %}

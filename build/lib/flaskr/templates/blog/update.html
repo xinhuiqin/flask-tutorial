@@ -1,0 +1,37 @@
+{#
+说明：
+1、变量的获取统一采用字典的形式，如：user['name']。
+#}
+{% extends 'base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='update.css') }}">
+{% endblock %}
+{% block header %}
+    <h1>{% block title %}编辑 “{{ post['title'] }}”{% endblock %}</h1>
+{% endblock %}
+{#
+文章内容:
+1、因为编辑的是某一篇文章，所以可以不用 for 循环
+#}
+{% block content %}
+    {# 采用 form 表单进行提交    #}
+    <form method="post">
+        {# label 的 for 对应这 input 的 name#}
+        <label for="title">标题</label>
+        {# value 属性显示文章原来的标题       #}
+        <input name="title" id="title" type="text" value="{{ post['title'] }}">
+        <label for="body">内容</label>
+        {#注意：textarea 和 input 显示文章原来的内容是不一样的，input 是使用 value 属性，textarea 是将原来的内容放在元素中间#}
+        <textarea name="body" id="body" cols="30" rows="10">{{ post['body'] }}</textarea>
+        <input type="submit" value="发布文章">
+    </form>
+    {# 分割线可以使用 border-bottom 属性实现，可以直接使用 </hr> 元素实现  #}
+    <hr>
+    {#
+    1、因为 update 和 delete 对应的视图函数不一样，所以分成两个 form
+    2、因为后端视图函数设置了只接受 post 方法，所以 form 需要制定 method 为 post
+    #}
+    <form action="{{ url_for('blog.delete', post_id=post['id']) }}" method="post">
+        <input class="danger" type="submit" value="删除文章" onclick="return confirm('删除文章后无法恢复，请确认是否删除?');">
+    </form>
+{% endblock %}

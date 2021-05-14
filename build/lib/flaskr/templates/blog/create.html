@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='create.css') }}">
+{% endblock %}
+{% block header %}
+    <h1>{% block title %}新增文章{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+    <form method="post">
+        <label for="title">标题</label>
+        <input name="title" id="title" value="{{ request.form['title'] }}" required
+               oninvalid="this.setCustomValidity('不能为空')"
+               oninput="this.setCustomValidity('')">
+        <label for="body">内容</label>
+        <textarea name="body" id="body" >{{ request.form['body'] }}</textarea>
+        <input type="submit" value="保存">
+    </form>
+{% endblock %}

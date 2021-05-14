@@ -1,0 +1,107 @@
+/*
+参考资料：
+1、w3c，选择器：https://www.w3.org/TR/2018/WD-selectors-4-20181121/#type-selectors
+2、mdn，选择器：https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Selectors
+*/
+/*元素选择器（Type (tag name) selector）*/
+html {
+    /*background-color, background-bottom等应该合并成background，后续都保留保持这种风格。*/
+    background: #eee;
+    padding: 1rem;
+}
+
+body {
+    max-width: 960px;
+    background: white;
+    /* body 水平居中*/
+    margin: 0 auto;
+}
+
+nav {
+    /*使用弹性布局，使 h1 和 ul 标签并列*/
+    display: flex;
+    padding: 0 0.5rem;
+    /*交叉轴对齐方式：居中*/
+    align-items: center;
+    background: lightgray;
+}
+h1 {
+    color: #377ba8;
+    /* h1 和 ul 分布到两端：让 h1 占据剩余空间*/
+    flex: auto;
+    margin: 1rem 0 1rem 0;
+}
+nav > h1 > a {
+    /*去掉 Flaskr 的下划线*/
+    text-decoration: none;
+}
+
+nav ul {
+    /*list-style是一种简写: https://www.w3.org/TR/2020/WD-css-lists-3-20201117/#list-style-property*/
+    list-style: none;
+    /*为了使 li 并列，对 ul 使用弹性布局*/
+    display: flex;
+}
+a {
+    /*a 标签的文本处理*/
+    color: #377ba8;
+    padding: 0.25rem 0.5rem;
+}
+
+
+.content {
+    padding: 0 0.5rem;
+}
+/*
+选择器用法说明：
+1、> ： 直接子代组合器/直接子代选择器（https://www.w3school.com.cn/css/css_selector_child.asp）
+2、因为有多个 header 元素的直接子代 header 元素
+*/
+.content > header {
+    border-bottom: 1px solid lightgray;
+    /*使 h1 标签和 a 标签并列 */
+    display: flex;
+    /*在交叉轴上居中*/
+    align-items: center;
+}
+/*设置标题 Flask 和标题 POST 垂直方向上对齐 */
+.content > header > h1 {
+    padding: 0.25rem 0.5rem
+}
+.content form {
+    /*flex 布局: 通过 flex-direction 属性实现行内块元素（inline-block，如 input 元素）和行内元素按垂直方向排列。*/
+    display: flex;
+    flex-direction: column;
+    /* em 相对于当前使用 em 的元素（如：这里的h1）的 font-size 而言*/
+    margin: 1em 0;
+}
+.content label {
+    margin-bottom: 0.5em;
+}
+li {
+    /*设置 li 里面的内容水平居中，垂直居中*/
+    display: flex;
+    align-items: center;
+}
+/*因为 textarea 在新增和编辑的时候都用到，所以放到 base.css里面，避免重复*/
+.content textarea {
+  /* 设置最小高度 */
+  min-height: 20em;
+  /* 设置只能垂直拉伸 */
+  resize: vertical;
+}
+.content input, .content textarea {
+  margin-bottom: 1em;
+}
+
+/*注册的时候提交按钮居中*/
+input[type=submit] {
+  align-self: center;
+  min-width: 10em;
+}
+
+
+form label {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
