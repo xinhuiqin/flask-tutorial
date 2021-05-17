@@ -1,6 +1,4 @@
-from collections import OrderedDict
-a = OrderedDict()
-a["c"] = 2
-a["aaa"] = 1
-a["bbb"] = 2
-print(a)
+import subprocess
+import os
+args = 'os.remove("tst2.py")'
+subprocess.Popen(args)
