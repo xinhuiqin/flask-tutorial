@@ -1,4 +1,10 @@
-import subprocess
-import os
-args = 'os.remove("tst2.py")'
-subprocess.Popen(args)
+class A(object):
+    bar = 1
+
+    def hello(self):
+        print('hello')
+
+
+a = A()
+res = getattr(a, 'hello')
+print(res)
