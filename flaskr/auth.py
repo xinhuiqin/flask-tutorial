@@ -118,6 +118,9 @@ def logout():
 
 
 def login_require(view):
+    '''
+        函数里面的注释应该使用三个单引号。
+    '''
     # 使用 functools.wraps 是为了保留原函数的一些性质，如 __name__
     @functools.wraps(view)
     def wrapped_view(**kwargs):
